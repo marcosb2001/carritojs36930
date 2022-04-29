@@ -19,16 +19,16 @@ for (const fondo of btns) {
 
 const wBtns = document.getElementsByClassName('wFondo')
 
-let wFondoFirst = localStorage.getItem('wColor') || 'khaki'
-const div = document.getElementById('window')
+let wFondoFirst = localStorage.getItem('wFondoColor') || 'khaki'
+const div = document.getElementsByClassName('window')[0]
 
-div.backgroundColor = wFondoFirst
+div.style.backgroundColor = wFondoFirst
 
 for (const wFondo of wBtns) {
     wFondo.addEventListener('click', e => {
-        let wColor = (e.target.innerHTML).toLowerCase()
-        div.style.backgroundColor = wColor
+        let color = (e.target.innerHTML).toLowerCase()
+        div.style.backgroundColor = color
 
-        localStorage.setItem('wFondo', wColor)
+        localStorage.setItem('wFondoColor', color)
     })
 }
