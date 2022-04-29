@@ -43,7 +43,6 @@ function Compra() {
         nuevoP.appendChild(nuevoTxt)
         nuevoP.appendChild(nuevoTxt2)
         document.body.appendChild(nuevoP)
-        console.log('nuevo P')
     }
 
     if(prompt('va a comprar más productos?') == 'no') {
