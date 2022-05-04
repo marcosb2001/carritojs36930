@@ -15,19 +15,23 @@ for (const fondo of btns) {
     })
 }
 
-//fondo de ventana 1
+//fondo de ventanas
 
 const wBtns = document.getElementsByClassName('wFondo')
 
 let wFondoFirst = localStorage.getItem('wFondoColor') || 'khaki'
 const div = document.getElementsByClassName('window')[0]
+const div2 = document.getElementsByClassName('window')[1]
 
 div.style.backgroundColor = wFondoFirst
+div2.style.backgroundColor = wFondoFirst
+
 
 for (const wFondo of wBtns) {
     wFondo.addEventListener('click', e => {
         let color = (e.target.innerHTML).toLowerCase()
         div.style.backgroundColor = color
+        div2.style.backgroundColor = color
 
         localStorage.setItem('wFondoColor', color)
     })

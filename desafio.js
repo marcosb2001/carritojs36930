@@ -1,6 +1,9 @@
 //definir funciones
 
-const suma = (a, b) => a + b
+function suma(...precios) {
+    console.log(precios, precios.length)
+    return precios.reduce((total, n)=> total + n, 0)
+}
 const resta = (a, b) => a - b
 const impuesto1 = x => x * 0.11
 const impuesto2 = x => x * 0.16
@@ -27,7 +30,7 @@ function Compra() {
     
     //preguntar y recopilar nombres y precios de objetos
 
-    while(respuestaClick = true){
+    while(respuestaClick){
     const nombre = prompt('ingrese el nombre del producto')
     const precio = parseInt(prompt('ingrese su precio'))
     const info = nombre + ', precio: $' + precio
@@ -115,7 +118,7 @@ function confirm() {
 
     // calculo precio final
 
-    let precioFinal = resta(suma(suma(sumarPrecios, impuestoCalculo), shippingCalculo), descuento)
+    let precioFinal = resta(suma(sumarPrecios, impuestoCalculo, shippingCalculo), descuento)
 
 
     //mostrar carrito y precio final
@@ -153,7 +156,7 @@ function confirm() {
 CarritoFinal()
 console.log(`usted tiene en su carrito: \n` + Carrito.join(`\n`))
 console.log('el costo de envío es: $' + parseInt(shippingCalculo))
-console.log('el precio total contando impuestos y descuentos es: $' + parseInt(precioFinal))
+console.log(', el precio total contando impuestos y descuentos es: $' + parseInt(precioFinal))
 
 }
 
