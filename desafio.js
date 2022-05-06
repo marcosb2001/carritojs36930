@@ -23,7 +23,6 @@ function Item(nombre, precio, info) {
 
 //definir función para añadir elementos HTML
 
-
 // función que se activa al apretar el botón "añadir productos"
 
 function Compra() {
@@ -39,13 +38,35 @@ function Compra() {
     
     Carrito.push(producto.info)
 
+
+    //función para crear un paragraph en el html
     function NuevoProducto() {
         const nuevoP = document.createElement('p')
         const nuevoTxt = document.createTextNode('Se ha añadido un nuevo producto (' + producto.info + '). ')
         const nuevoTxt2 = document.createTextNode('Hay ' + Carrito.length + ' productos en el carrito.')
         nuevoP.appendChild(nuevoTxt)
         nuevoP.appendChild(nuevoTxt2)
+        nuevoP.appendChild(botonBorrar())
         document.body.appendChild(nuevoP)
+
+        function botonBorrar() {
+            const btnBorrar = document.createElement("button");
+          
+            btnBorrar.textContent = "remover";
+            btnBorrar.className = "btn-borrar";
+          
+            btnBorrar.addEventListener("click", (e) => {
+                nuevoP.removeChild(nuevoTxt);
+                nuevoP.removeChild(nuevoTxt2);
+                nuevoP.removeChild(btnBorrar);
+                
+          
+            });
+          
+            return btnBorrar;
+          }
+
+  
     }
 
     if(prompt('va a comprar más productos?') == 'no') {
@@ -53,10 +74,30 @@ function Compra() {
         console.log('hay ' + Carrito.length + ' items en el carrito.')
         Precios.push(producto.precio)
         NuevoProducto()
+
+        Toastify({
+            text: "Se añadió " + producto.nombre,
+            className: "info",
+            style: {
+              background: "white",
+              color: 'black',
+            }
+          }).showToast();
+
         break
     }
 
+    Toastify({
+        text: "Se añadió " + producto.nombre,
+        className: "info",
+        style: {
+          background: "white",
+          color: 'black',
+        }
+      }).showToast();
+
     Precios.push(producto.precio)
+
 
     console.log('se ha agregado un nuevo producto.')
     NuevoProducto()
@@ -72,9 +113,12 @@ function respuestaClick() {
     Compra()
 }
 
+
 // función que se activa al apretar el botón "confirmar compras"
 
+
 function confirm() {
+    
 
     //sumar todos los precios para un precio final pre-descuentos
 
@@ -150,7 +194,7 @@ function confirm() {
         nuevoPcarrito.appendChild(nuevoTxt2)
         document.body.appendChild(nuevoPcarrito)
 
-}
+} 
 
 
 CarritoFinal()
