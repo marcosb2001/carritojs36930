@@ -21,6 +21,25 @@ function Item(nombre, precio, info) {
     this.info = nombre + ', precio: $' + precio
 }
 
+//Fetch para instrucciones del programa
+
+const instruccionlista = document.querySelector("#instrucciones")
+fetch('https://raw.githubusercontent.com/marcosb2001/coderjson36930/main/instrucciones.json')
+  .then(response => response.json())
+  .then(data => {
+    html = ""
+    data.forEach(regla => {
+      html += `
+      <li>
+          <p>${regla.body}</p>
+      </li>`
+
+  })
+  instruccionlista.innerHTML = html
+  })
+
+
+
 //definir función para añadir elementos HTML
 
 // función que se activa al apretar el botón "añadir productos"
@@ -209,3 +228,6 @@ boton2.addEventListener('click', respuestaClick2)
 function respuestaClick2() {
     confirm()
 }
+
+
+
